@@ -3,6 +3,8 @@ import PostList from "./components/postList";
 import PostForm from "./components/PostForm";
 import PostFilter from "./components/PostFilter";
 import "./styles/app.css";
+import MyModal from "./components/UI/MyModal/MyModal";
+import MyButton from "./components/UI/button/MyButton";
 function App() {
   const [posts, setPosts] = useState([
     { id: 1, title: "Honda", body: "I Love Honda" },
@@ -10,6 +12,7 @@ function App() {
     { id: 3, title: "Harley Davidson", body: "I Love Harley Davidson" },
   ]);
   const [filter, setFilter] = useState({ sort: "", query: "" });
+  const [modal, setModal] = useState(false);
   const sortedPosts = useMemo(() => {
     if (filter.sort) {
       return [...posts].sort((a, b) =>
@@ -32,8 +35,17 @@ function App() {
   };
   return (
     <div className="App">
-      <PostForm create={createPost} />
-      <hr style={{ margin: 15 }}></hr>
+      <MyButton
+        style={{ marginTop: 30 }}
+        onClick={() => {
+          setModal(true);
+        }}
+      >
+        Create post
+      </MyButton>
+      <MyModal visible={modal} setVisible={setModal}>
+        <PostForm create={createPost} />
+      </MyModal>
       <PostFilter filter={filter} setFilter={setFilter} />
       <PostList
         posts={sorterAndSearchedPosts}
