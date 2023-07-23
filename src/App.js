@@ -29,6 +29,7 @@ function App() {
   }, [filter.query, sortedPosts]);
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
+    setModal(false);
   };
   const removePost = (post) => {
     setPosts(posts.filter((p) => p.id !== post.id));
