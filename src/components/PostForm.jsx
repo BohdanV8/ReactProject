@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
-function PostForm({ create }) {
+function PostForm({ create, countOfPosts }) {
   function addNewPost(e) {
     e.preventDefault();
     const newPost = { ...post, id: Date.now() };

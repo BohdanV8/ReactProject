@@ -9,13 +9,9 @@ function PostList({ posts, title, removePost }) {
     <div style={{ marginBottom: 50 }}>
       <h1 style={{ textAlign: "center", marginTop: "20px" }}>{title}</h1>
       <TransitionGroup>
-        {posts.map((post, index) => (
+        {posts.map((post) => (
           <CSSTransition key={post.id} timeout={500} classNames="post">
-            <PostItem
-              number={index + 1}
-              post_item={post}
-              removePost={removePost}
-            />
+            <PostItem post_item={post} removePost={removePost} />
           </CSSTransition>
         ))}
       </TransitionGroup>

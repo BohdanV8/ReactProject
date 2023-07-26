@@ -1,0 +1,15 @@
+.page__wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .page {
+    padding: 10px;
+    border: 1px solid red;
+    cursor: pointer;
+  }
+  
+  .page_current {
+    border: 2px solid rgb(0, 0, 0);
+    font-weight: bold;
+  }
