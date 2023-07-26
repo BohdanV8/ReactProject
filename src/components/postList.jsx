@@ -6,7 +6,7 @@ function PostList({ posts, title, removePost }) {
     return <h1 style={{ textAlign: "center" }}>Posts not found</h1>;
   }
   return (
-    <div>
+    <div style={{ marginBottom: 50 }}>
       <h1 style={{ textAlign: "center", marginTop: "20px" }}>{title}</h1>
       <TransitionGroup>
         {posts.map((post, index) => (
