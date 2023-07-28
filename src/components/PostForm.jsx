@@ -4,7 +4,7 @@ import MyButton from "./UI/button/MyButton";
 function PostForm({ create, countOfPosts }) {
   function addNewPost(e) {
     e.preventDefault();
-    const newPost = { ...post, id: Date.now() };
+    const newPost = { ...post, id: countOfPosts + 1 };
     create(newPost);
     setPost({ title: "", body: "" });
   }

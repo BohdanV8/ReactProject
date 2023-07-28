@@ -1,6 +1,8 @@
 .page__wrapper {
     display: flex;
     justify-content: center;
+    position: relative;
+    bottom: 20px;
   }
   
   .page {

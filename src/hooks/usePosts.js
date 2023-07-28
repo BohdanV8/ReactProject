@@ -10,7 +10,7 @@ const useSortedPosts = (posts, sort) => {
   return sortedPosts;
 };
 
-export const usePosts = (posts, sort, query) => {
+const usePosts = (posts, sort, query) => {
   const sortedPosts = useSortedPosts(posts, sort);
   const sorterAndSearchedPosts = useMemo(() => {
     return sortedPosts.filter((post) =>
@@ -19,3 +19,5 @@ export const usePosts = (posts, sort, query) => {
   }, [query, sortedPosts]);
   return sorterAndSearchedPosts;
 };
+
+export default usePosts;

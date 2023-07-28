@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Racing+Sans+One&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +9,29 @@
     display: flex;
     justify-content: center;
 }
-.App{
-    width: 800px;
+.Posts{
+  margin-top: 50px;
+  width: 800px;
+}
+.About {
+  margin-top: 80px;
+}
+.Contact {
+  position: absolute;
+  top: 20%;
+  text-align: center;
+}
+.Contact h1 a{
+  font-size: 50px;
+}
+mark{
+  font-size: 50px;
+}
+.Home{
+  position: absolute;
+  top: 35%;
+  font-size: 60px;
+  font-family: 'Racing Sans One', cursive;
 }
 .post{
     display: flex;
