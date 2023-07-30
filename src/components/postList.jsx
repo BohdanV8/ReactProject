@@ -3,7 +3,9 @@ import PostItem from "./PostItem";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 function PostList({ posts, title, removePost }) {
   if (posts.length === 0) {
-    return <h1 style={{ textAlign: "center" }}>Posts not found</h1>;
+    return (
+      <h1 style={{ textAlign: "center", marginBottom: 50 }}>Posts not found</h1>
+    );
   }
   return (
     <div style={{ marginBottom: 50 }}>

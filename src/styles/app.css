@@ -33,6 +33,12 @@ mark{
   font-size: 60px;
   font-family: 'Racing Sans One', cursive;
 }
+.PostPage{
+  margin-top: 80px;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
 .post{
     display: flex;
     padding: 15px;
@@ -41,7 +47,16 @@ mark{
     justify-content: space-between;
     align-items: center;
 }
-  
+
+.comment{
+  display: block;
+  padding: 15px;
+  border: 2px solid rgb(255, 166, 0);
+  margin-top: 20px;
+  justify-content: space-between;
+  width: 800px;
+}
+
 .post-enter {
     transform: translateX(-500px);
   }
@@ -57,3 +72,7 @@ mark{
     transition: all 500ms ease-in;
   }
 
+.postButtons{
+  display: flex;
+  padding: 10px;
+}
