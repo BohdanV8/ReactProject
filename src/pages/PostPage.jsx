@@ -30,7 +30,7 @@ const PostPage = () => {
           {post.id}. {post.title}
           <h1 style={{ textAlign: "center" }}>Comments</h1>
           {comments.map((el) => (
-            <CommentItem commentItem={el} />
+            <CommentItem commentItem={el} key={el.id} />
           ))}
         </div>
       )}

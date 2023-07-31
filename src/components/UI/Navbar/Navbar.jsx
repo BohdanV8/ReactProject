@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context";
 function Navbar() {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
   return (
     <div className={styles.myNavbar}>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -42,6 +44,19 @@ function Navbar() {
                   Contact
                 </Link>
               </li>
+              {isAuth && (
+                <li className="nav-item">
+                  <button
+                    className="nav-link"
+                    onClick={() => {
+                      setIsAuth(false);
+                      localStorage.removeItem("isAuth");
+                    }}
+                  >
+                    log out
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>
