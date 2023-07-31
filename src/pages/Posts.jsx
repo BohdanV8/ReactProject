@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import MyButton from "../components/UI/button/MyButton";
 import Loader from "../components/UI/Loader/Loader";
 import PostList from "../components/postList";
-import Pagination from "../components/UI/Pagination/Pagination";
 import usePosts from "../hooks/usePosts";
 import useFetching from "../hooks/useFetching";
 import PostService from "../API/PostService";
@@ -19,9 +18,11 @@ function Posts() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const sorterAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
+  const lastElement = useRef();
+  const observer = useRef();
   const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
     const response = await PostService.getAll(limit, page);
-    setPosts(response.data);
+    setPosts([...posts, ...response.data]);
     const totalCount = response.headers["x-total-count"];
     setTotalPages(getPageCount(totalCount, limit));
   });
@@ -32,6 +33,21 @@ function Posts() {
   const removePost = (post) => {
     setPosts(posts.filter((p) => p.id !== post.id));
   };
+  useEffect(() => {
+    if (isPostsLoading) {
+      return;
+    }
+    if (observer.current) {
+      observer.current.disconnect();
+    }
+    var callback = (enteries, observer) => {
+      if (enteries[0].isIntersecting && page < totalPages) {
+        setPage(page + 1);
+      }
+    };
+    observer.current = new IntersectionObserver(callback);
+    observer.current.observe(lastElement.current);
+  }, [isPostsLoading]);
   useEffect(() => {
     fetchPosts();
   }, [page]);
@@ -56,24 +72,17 @@ function Posts() {
           {postError}
         </h1>
       )}
-      {isPostsLoading ? (
+      <PostList
+        posts={sorterAndSearchedPosts}
+        title="List of posts"
+        removePost={removePost}
+      />
+      <div style={{ height: 20 }} ref={lastElement}></div>
+      {isPostsLoading && (
         <div
           style={{ display: "flex", justifyContent: "center", marginTop: 50 }}
         >
           <Loader />
-        </div>
-      ) : (
-        <div>
-          <PostList
-            posts={sorterAndSearchedPosts}
-            title="List of posts"
-            removePost={removePost}
-          />
-          <Pagination
-            totalPages={totalPages}
-            page={page}
-            changePage={setPage}
-          />
         </div>
       )}
     </div>
